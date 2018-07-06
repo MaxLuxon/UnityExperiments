@@ -235,10 +235,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 206139667}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29f49526fb7c74787924fa1298f18d9f, type: 3}
+  m_Script: {fileID: 11500000, guid: 41b56531e23584773b74213c5136552c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  center: {fileID: 606086906}
+  center: {fileID: 15962023}
   radius: 4
   speed: 0.18
   lookat: 1
