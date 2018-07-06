@@ -3,8 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EField : MonoBehaviour {
-    
+
+	public float NumberOfParticles = 500;
+
+	public float ParticleVelocity = 1;
     public float VectorFieldScale = 1;
+
+	public int Behavior = 0;
 
     public bool paused = false;
 
@@ -14,7 +19,7 @@ public class EField : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-        for (int i = 0; i < 500; i++) {
+        for (int i = 0; i < NumberOfParticles; i++) {
 
             GameObject go = GameObject.Instantiate(ChargePrefab);
 
@@ -50,35 +55,64 @@ public class EField : MonoBehaviour {
         
         }
 
+		if (Input.GetKeyDown(KeyCode.Alpha0)) Behavior = 0;
+        if (Input.GetKeyDown(KeyCode.Alpha1)) Behavior = 1;
+        if (Input.GetKeyDown(KeyCode.Alpha2)) Behavior = 2;
+        if (Input.GetKeyDown(KeyCode.Alpha3)) Behavior = 3;
+        if (Input.GetKeyDown(KeyCode.Alpha4)) Behavior = 4;
+
         if (paused) return;
 
-        //for (int i = 0; i < charges.Count; i++) {
+        for (int i = 0; i < charges.Count; i++){
 
-        //    GameObject go = charges[i];
+                GameObject go = charges[i];
 
-        //    go.transform.position += go.GetComponent<Charge>().moveDir * Time.deltaTime*0.5f;
+			if (Behavior == 0) {
+            
+				Vector3 vectorField = getVectorField(go.transform.position) * 7;
 
-        //    Vector3 vectorField = getVectorField(go.transform.position);
+				go.GetComponent<Charge>().moveDir += -go.GetComponent<Charge>().moveDir * 0.9f * Time.deltaTime + vectorField * go.GetComponent<Charge>().SpeedFactor * Time.deltaTime * 1;
+				go.GetComponent<Charge>().moveDir.Normalize();
 
-        //    go.GetComponent<Charge>().moveDir +=-go.GetComponent<Charge>().moveDir *0.99f*Time.deltaTime+ vectorField*go.GetComponent<Charge>().SpeedFactor*Time.deltaTime*20-go.transform.position*1.7f*Time.deltaTime;
-        //    //go.GetComponent<Charge>().moveDir.Normalize();
+				go.transform.position += go.GetComponent<Charge>().moveDir * Time.deltaTime*ParticleVelocity;
 
-        //}
+			}else if (Behavior == 1) {
 
+                Vector3 vectorField = getVectorField(go.transform.position*0.05f) * 7;
 
-        for (int i = 0; i < charges.Count; i++)
-        {
+                go.GetComponent<Charge>().moveDir += -go.GetComponent<Charge>().moveDir * 0.98f * Time.deltaTime + vectorField * go.GetComponent<Charge>().SpeedFactor * Time.deltaTime * 1;
+                go.GetComponent<Charge>().moveDir.Normalize();
 
-            GameObject go = charges[i];
+                go.transform.position += go.GetComponent<Charge>().moveDir * Time.deltaTime*2.5f*ParticleVelocity;
 
-            Vector3 vectorField = getVectorField(go.transform.position)*7;
+            }else if (Behavior == 2) {
 
-            go.GetComponent<Charge>().moveDir += -go.GetComponent<Charge>().moveDir * 0.9f * Time.deltaTime + vectorField * go.GetComponent<Charge>().SpeedFactor * Time.deltaTime * 1;
-            go.GetComponent<Charge>().moveDir.Normalize();
+                Vector3 vectorField = getVectorField(go.transform.position*0.4f) * 7;
 
-            go.transform.position += go.GetComponent<Charge>().moveDir * Time.deltaTime;
+                go.GetComponent<Charge>().moveDir += vectorField * go.GetComponent<Charge>().SpeedFactor * Time.deltaTime * 1-go.transform.position*1.7f*Time.deltaTime;
+                go.GetComponent<Charge>().moveDir.Normalize();
 
+                go.transform.position += go.GetComponent<Charge>().moveDir * Time.deltaTime*3*ParticleVelocity;
+
+            }else if (Behavior == 3) {
+
+                Vector3 vectorField = getVectorField(go.transform.position*0.4f) * 7;
+
+                go.GetComponent<Charge>().moveDir = vectorField * go.GetComponent<Charge>().SpeedFactor * Time.deltaTime * 0.2f-go.transform.position*1.7f*Time.deltaTime;
+                //go.GetComponent<Charge>().moveDir.Normalize();
+
+                go.transform.position += go.GetComponent<Charge>().moveDir * Time.deltaTime*ParticleVelocity*30;
+
+            } else if (Behavior == 4) { 
            
+                go.transform.position += go.GetComponent<Charge>().moveDir * Time.deltaTime*0.5f*ParticleVelocity;
+
+                Vector3 vectorField = getVectorField(go.transform.position);
+
+                go.GetComponent<Charge>().moveDir +=-go.GetComponent<Charge>().moveDir *0.99f*Time.deltaTime+ vectorField*go.GetComponent<Charge>().SpeedFactor*Time.deltaTime*20-go.transform.position*1.7f*Time.deltaTime;
+
+            
+            }           
 
         }
 		
