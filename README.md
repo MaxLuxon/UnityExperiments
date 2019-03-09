@@ -14,7 +14,7 @@ Planet (Displacement Shader)<br/>
 ![Alt text](Meta/planet.png?raw=true "Planet")<br/><br/>
 
 Nanobots (Spherical Movement)<br/>
-![Alt text](Meta/nanobots.png?raw=true "Nanobots")<br/><br/>
+![Alt text](Meta/nanobot.png?raw=true "Nanobots")<br/><br/>
 
 Milkglass (Blurred Background)<br/>
 ![Alt text](Meta/milkglass.png?raw=true "Milkglass")<br/><br/>
