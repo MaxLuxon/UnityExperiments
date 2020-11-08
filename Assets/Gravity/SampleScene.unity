@@ -5233,8 +5233,8 @@ MonoBehaviour:
   camera: {fileID: 963194227}
   NumberOfParticle: 400
   Prefab: {fileID: 616262111}
-  SimSpeed: 10
-  G: 0.5
+  SimSpeed: 25
+  G: 1
   averageImpulse: {x: 0, y: 0, z: 0}
   SunMat: {fileID: 2100000, guid: f20de263ccaa24f51a46d3a9f3f9be9c, type: 2}
   colRadius: 0
@@ -5625,8 +5625,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 1
-      minScalar: 1
+      scalar: 2
+      minScalar: 2
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -6259,7 +6259,7 @@ ParticleSystem:
     rateOverDistance:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 1.4
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -10578,7 +10578,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 100
   orthographic: 0
   orthographic size: 91.15
   m_Depth: -1
